@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  * Author:   MAIBENBEN
  * Date:     2020/8/4 10:00
  * History:
- * <author>          <time>          <version>          <desc>1
+ * <author>          <time>          <version>          <desc>
  */
 public class BasicAuth implements Filter {
     /** Logger */
