@@ -16,11 +16,13 @@ import java.util.StringTokenizer;
  * Author:   MAIBENBEN
  * Date:     2020/8/4 10:00
  * History:
- * <author>          <time>          <version>          <desc>
+ * <author>          <time>          <version>          <desc>1
  */
 public class BasicAuth implements Filter {
     /** Logger */
     private static final Logger LOG = LoggerFactory.getLogger(BasicAuth.class);
+
+    private static final String CHARSET = "UTF-8";
 
     private String username = "";
 
@@ -29,7 +31,7 @@ public class BasicAuth implements Filter {
     private String realm = "Protected";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         username = filterConfig.getInitParameter("username");
         password = filterConfig.getInitParameter("password");
     }
@@ -52,7 +54,7 @@ public class BasicAuth implements Filter {
                 if (basic.equalsIgnoreCase("Basic")) {
 
                     try {
-                        String credentials = new String(Base64.decodeBase64(st.nextToken()), "UTF-8");
+                        String credentials = new String(Base64.decodeBase64(st.nextToken()), CHARSET);
                         LOG.debug("Credentials: " + credentials);
 
                         int p = credentials.indexOf(":");
